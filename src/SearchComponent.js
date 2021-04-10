@@ -6,18 +6,18 @@ class SearchAPI extends Component {
         super(props);
         this.state = {
             apiData: [],
-            pokemon: "",
+            zipcode: "",
             found: false
         }
     }
 
     handleInputChange = (event) => {
-        this.setState({pokemon: event.target.value});
+        this.setState({zipcode: event.target.value});
     }
 
     // handleSearchClick = () => {
-    //     let pokemonName = this.state.pokemon;
-    //     let linkToAPI = 'https://pokeapi.co/api/v2/pokemon/'+pokemonName;
+    //     let zipcodeName = this.state.pokemon;
+    //     let linkToAPI = 'https://pokeapi.co/api/v2/pokemon/'+zipcodeName;
     //     fetch(linkToAPI)
     //         .then((response) => {
     //             if(response.status === 404){
@@ -32,11 +32,11 @@ class SearchAPI extends Component {
     //             console.error('Error:', error);
     //         });
 
-    //}
+    // }
 
     handleSearchClick = async () => {
-        let pokemonName = this.state.pokemon;
-        let linkToAPI = 'https://pokeapi.co/api/v2/pokemon/'+pokemonName;
+        let zipcodeName = this.state.zipcode;
+        let linkToAPI = 'http://ctp-zip-api.herokuapp.com/zip/'+zipcodeName;
 
         try {
             let response = await axios.get(linkToAPI);
@@ -54,6 +54,17 @@ class SearchAPI extends Component {
        
         }
     }
+    //MARK: ADDED BY GABBY
+    zipCodeComponent() {
+        if (this.state.zipcode.length !== 5) {
+            if (this.state.found === true) //if its true, make it false b/c it is not found
+                this.setState({found: false});
+        } 
+        else {    
+            axios.get("http://ctp-zip-api.herokuapp.com/zip/" + this.state.zipcode).then((response) => {
+            });
+        }
+      }
 
     makeTable = () => {
         let currData = this.state.apiData;
@@ -80,8 +91,9 @@ class SearchAPI extends Component {
         return (
             <div className="container">
                 <div className = "search">
-                    <h3>Search Pokemon:</h3>
-                    <input type="text" value={this.state.pokemon} onChange={this.handleInputChange} placeholder="Enter Pokemon name"/>
+                    <h3>Search Zipcode:</h3>
+                    <input type="text" value={this.state.zipcode
+                    } onChange={this.handleInputChange} placeholder="Enter Zipcode"/>
                     <button className="search-button" onClick={this.handleSearchClick}>Search</button>
                 </div>
                 <br/>

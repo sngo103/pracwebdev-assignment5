@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './App.css';
+import './SearchComponent';
 
 /*
 Function that returns info from that city
@@ -33,6 +34,7 @@ function ZipSearchField({zipCode}) {
 
   );
 }
+
 class App extends Component {
   /*MARK: we need to put a constructor for an array 
   of the cities to return the multiple cities from that zipcode
@@ -52,7 +54,7 @@ class App extends Component {
         <div className = "container">
           <div className = "row">
             <div className = "column">
-              <ZipSearchField 
+              <ZipSearchField  
                 //zipCode = {this.state.zipCode}
               />
             </div>
