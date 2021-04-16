@@ -1,41 +1,18 @@
 import React, {Component} from 'react';
+import './index.css';
 import './App.css';
-import './SearchComponent';
-
-/*
-Function that returns info from that city
-*/
-function City(props) {
-  return (
-    <div>
-      This is the City component
-    </div>
-  );
-}
-/*
-Function takes in Zipcode
-takes in the user zipcode 
-MARK: we need a second parameter to change the zipcode
-*/
-function ZipSearchField({zipCode}) {
-  return (
-  <div>
-    <form className = "form-inline my-4">
-      <label>
-        Zipcode:
-      </label>
-      <input
-        type = "text"
-        className = "form-control ml-2"
-        value = {zipCode}
-      />
-    </form>
-  </div>
-
-  );
-}
+import SearchComponent from './components/SearchComponent';
+import ZipSearchField from './components/ZipSearchField';
+import City from './components/City';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      zipcode: ''
+    };
+  }
+
   /*MARK: we need to put a constructor for an array 
   of the cities to return the multiple cities from that zipcode
   after we create constructor, below that we are going to grab value of zipcode.
@@ -51,18 +28,15 @@ class App extends Component {
         <div className="App-header">
           <h2>Zip Code Search</h2>
         </div>
-        <div className = "container">
+        <div className = "container text-center">
           <div className = "row">
             <div className = "column">
               <ZipSearchField  
-                //zipCode = {this.state.zipCode}
+                zipcode={this.state.zipcode}
               />
             </div>
           </div>
-
-          
           <div>
-            <City />
             <City />
           </div>
         </div>
