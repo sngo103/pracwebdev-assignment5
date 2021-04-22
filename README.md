@@ -1,5 +1,5 @@
 # Team of Foodies
-#### Samantha Ngo, Kristy Lau, Gabby Gonzalez, Nirmala Kuhl
+#### Gabby Gonzalez, Nirmala Kuhl, Samantha Ngo, Kristy Lau
 #### Practical Web Development | Assignment 5 - Zip Code Search | 2021-04-22
 -----
 **Task Breakdown**
