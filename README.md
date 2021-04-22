@@ -10,9 +10,9 @@
   - [x] Zip Code Call API and Display Results
   - [ ] Zip Code No Results
 - Samantha: 
-  - [ ] Zip Code - Add CSS for UI
-  - [ ] City Search - Input
-  - [ ] City Search - API Call and Display
+  - [x] Zip Code - Add CSS for UI
+  - [x] City Search - Input
+  - [x] City Search - API Call and Display
 - Kristy: 
   - [ ] Display all states where the city was found
   - [ ] Group the zip code results by state
