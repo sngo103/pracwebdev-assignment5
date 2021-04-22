@@ -25,7 +25,9 @@ class ZipFieldSearch extends Component {
         this.setState({ myData: data });
         // console.log(this.state.myData);
       })
-      .catch((e)=> {console.log("Error:", e)});
+      .catch((e) => {
+        console.log("Error:", e);
+      });
   }
 
   // This goes and fetches city information based on the value in this.state.zipcode
@@ -38,13 +40,15 @@ class ZipFieldSearch extends Component {
         this.setState({ myData: data });
         // console.log(this.state.myData);
       })
-      .catch((e)=> {console.log("Error:", e)});
+      .catch((e) => {
+        console.log("Error:", e);
+      });
   }
 
   //this gets called whenever the text field changes
   handleInputChange(e) {
     if (e.length === 5) {
-      this.setState({zipcode: e}); //or should we use setState somehow? didn't work for me
+      this.setState({ zipcode: e }); //or should we use setState somehow? didn't work for me
       // this.componentDidMount(); // is there a more elegant way to trigger this?
     }
   }
@@ -73,24 +77,39 @@ class ZipFieldSearch extends Component {
             placeholder="10065"
             defaultValue={this.state.zipcode}
             onChange={(e) => this.handleInputChange(e.target.value)}
+            className="border-2 border-black rounded-md px-2 text-center m-2"
           />
         </form>
-        <div className="align-center">
+        <div className="inline-block">
           {this.state.myData.map((currentZip) => (
-            //TODO: we still need to style those tables so they don't look like from the 90s..
-            <div className="zipTable">
-              <table>
+            <div>
+              <table className="border-black border p-1">
                 <tr>
-                  <td>{currentZip.LocationText}</td>
-                </tr>
-                <tr>State: {currentZip.State}</tr>
-                <tr>
-                  Location: ({currentZip.Lat}, {currentZip.Long})
+                  <td className="border-black border px-10 font-bold bg-gray-200">
+                    {currentZip.LocationText}
+                  </td>
                 </tr>
                 <tr>
-                  Population (estimated): {currentZip.EstimatedPopulation}
+                  <td className="border-black border px-10">
+                    State: {currentZip.State}
+                  </td>
                 </tr>
-                <tr>Total Wages: {currentZip.TotalWages}</tr>
+                <tr>
+                  <td className="border-black border px-10">
+                    Location: ({currentZip.Lat}, {currentZip.Long}){" "}
+                  </td>
+                </tr>
+                <tr>
+                  <td className="border-black border px-10">
+                    Population (estimated): {currentZip.EstimatedPopulation}
+                  </td>
+                </tr>
+                <tr>
+                  {" "}
+                  <td className="border-black border px-10">
+                    Total Wages: {currentZip.TotalWages}
+                  </td>
+                </tr>
               </table>
             </div>
           ))}
