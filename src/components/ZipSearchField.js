@@ -10,6 +10,7 @@ class ZipFieldSearch extends Component {
     super(props);
     this.state = {
       zipcode: "11229",
+      invalid: false,
       myData: [],
     };
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -37,8 +38,8 @@ class ZipFieldSearch extends Component {
     fetch("https://ctp-zip-api.herokuapp.com/zip/" + this.state.zipcode)
       .then((res) => res.json())
       .then((data) => {
-        this.setState({ myData: data });
-        // console.log(this.state.myData);
+        this.setState({ myData: data});
+        console.log("DATA:", this.state.myData);
       })
       .catch((e) => {
         console.log("Error:", e);
@@ -48,8 +49,9 @@ class ZipFieldSearch extends Component {
   //this gets called whenever the text field changes
   handleInputChange(e) {
     if (e.length === 5) {
-      this.setState({ zipcode: e }); //or should we use setState somehow? didn't work for me
-      // this.componentDidMount(); // is there a more elegant way to trigger this?
+      this.setState({ zipcode: e, invalid: false });
+    } else {
+      this.setState({ zipcode: e, invalid: true });
     }
   }
 
@@ -66,6 +68,45 @@ class ZipFieldSearch extends Component {
 			  
 			  */
   render() {
+    let validResponse = (
+      <div className="inline-block">
+        {this.state.myData.map((currentZip) => (
+          <div className="p-3">
+            <table className="border-black border">
+              <tr>
+                <td className="border-black border px-10 font-bold bg-gray-200">
+                  {currentZip.LocationText}
+                </td>
+              </tr>
+              <tr>
+                <td className="border-black border px-10">
+                  State: {currentZip.State}
+                </td>
+              </tr>
+              <tr>
+                <td className="border-black border px-10">
+                  Location: ({currentZip.Lat}, {currentZip.Long}){" "}
+                </td>
+              </tr>
+              <tr>
+                <td className="border-black border px-10">
+                  Population (estimated): {currentZip.EstimatedPopulation}
+                </td>
+              </tr>
+              <tr>
+                {" "}
+                <td className="border-black border px-10">
+                  Total Wages: {currentZip.TotalWages}
+                </td>
+              </tr>
+            </table>
+          </div>
+        ))}
+      </div>
+    );
+
+    let invalidResponse = <div>No Results. </div>;
+
     return (
       <div>
         <form className="form-inline my-4">
@@ -80,40 +121,7 @@ class ZipFieldSearch extends Component {
             className="border-2 border-black rounded-md px-2 text-center m-2"
           />
         </form>
-        <div className="inline-block">
-          {this.state.myData.map((currentZip) => (
-            <div>
-              <table className="border-black border p-1">
-                <tr>
-                  <td className="border-black border px-10 font-bold bg-gray-200">
-                    {currentZip.LocationText}
-                  </td>
-                </tr>
-                <tr>
-                  <td className="border-black border px-10">
-                    State: {currentZip.State}
-                  </td>
-                </tr>
-                <tr>
-                  <td className="border-black border px-10">
-                    Location: ({currentZip.Lat}, {currentZip.Long}){" "}
-                  </td>
-                </tr>
-                <tr>
-                  <td className="border-black border px-10">
-                    Population (estimated): {currentZip.EstimatedPopulation}
-                  </td>
-                </tr>
-                <tr>
-                  {" "}
-                  <td className="border-black border px-10">
-                    Total Wages: {currentZip.TotalWages}
-                  </td>
-                </tr>
-              </table>
-            </div>
-          ))}
-        </div>
+        {this.state.invalid ? invalidResponse : validResponse}
       </div>
     );
   }
