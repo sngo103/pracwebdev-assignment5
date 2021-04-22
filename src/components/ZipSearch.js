@@ -5,27 +5,15 @@ Function takes in Zipcode
 takes in the user zipcode 
 MARK: we need a second parameter to change the zipcode
 */
-class ZipFieldSearch extends Component {
+class ZipSearch extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      zipcode: "11229",
+      zipcode: "",
+      invalid: true,
       myData: [],
     };
     this.handleInputChange = this.handleInputChange.bind(this);
-  }
-
-  // This goes and fetches city information based on the value in this.state.zipcode.
-  // Note: this state value is updated whenever the value of the text input changes.
-  // Runs once.
-  componentDidMount() {
-    fetch("https://ctp-zip-api.herokuapp.com/zip/" + this.state.zipcode)
-      .then((res) => res.json())
-      .then((data) => {
-        this.setState({ myData: data });
-        // console.log(this.state.myData);
-      })
-      .catch((e)=> {console.log("Error:", e)});
   }
 
   // This goes and fetches city information based on the value in this.state.zipcode
@@ -35,17 +23,19 @@ class ZipFieldSearch extends Component {
     fetch("https://ctp-zip-api.herokuapp.com/zip/" + this.state.zipcode)
       .then((res) => res.json())
       .then((data) => {
-        this.setState({ myData: data });
-        // console.log(this.state.myData);
+        this.setState({ myData: data});
       })
-      .catch((e)=> {console.log("Error:", e)});
+      .catch((e) => {
+        console.log("Error:", e);
+      });
   }
 
   //this gets called whenever the text field changes
   handleInputChange(e) {
     if (e.length === 5) {
-      this.setState({zipcode: e}); //or should we use setState somehow? didn't work for me
-      // this.componentDidMount(); // is there a more elegant way to trigger this?
+      this.setState({ zipcode: e, invalid: false });
+    } else {
+      this.setState({ zipcode: e, invalid: true });
     }
   }
 
@@ -62,6 +52,45 @@ class ZipFieldSearch extends Component {
 			  
 			  */
   render() {
+    let validResponse = (
+      <div className="inline-block">
+        {this.state.myData.map((currentZip) => (
+          <div className="p-3">
+            <table className="border-black border">
+              <tr>
+                <td className="border-black border px-10 font-bold bg-gray-200">
+                  {currentZip.LocationText}
+                </td>
+              </tr>
+              <tr>
+                <td className="border-black border px-10">
+                  State: {currentZip.State}
+                </td>
+              </tr>
+              <tr>
+                <td className="border-black border px-10">
+                  Location: ({currentZip.Lat}, {currentZip.Long}){" "}
+                </td>
+              </tr>
+              <tr>
+                <td className="border-black border px-10">
+                  Population (estimated): {currentZip.EstimatedPopulation}
+                </td>
+              </tr>
+              <tr>
+                {" "}
+                <td className="border-black border px-10">
+                  Total Wages: {currentZip.TotalWages}
+                </td>
+              </tr>
+            </table>
+          </div>
+        ))}
+      </div>
+    );
+
+    let invalidResponse = <div>No Results. </div>;
+
     return (
       <div>
         <form className="form-inline my-4">
@@ -73,31 +102,13 @@ class ZipFieldSearch extends Component {
             placeholder="10065"
             defaultValue={this.state.zipcode}
             onChange={(e) => this.handleInputChange(e.target.value)}
+            className="border-2 border-black rounded-md px-2 text-center m-2"
           />
         </form>
-        <div className="align-center">
-          {this.state.myData.map((currentZip) => (
-            //TODO: we still need to style those tables so they don't look like from the 90s..
-            <div className="zipTable">
-              <table>
-                <tr>
-                  <td>{currentZip.LocationText}</td>
-                </tr>
-                <tr>State: {currentZip.State}</tr>
-                <tr>
-                  Location: ({currentZip.Lat}, {currentZip.Long})
-                </tr>
-                <tr>
-                  Population (estimated): {currentZip.EstimatedPopulation}
-                </tr>
-                <tr>Total Wages: {currentZip.TotalWages}</tr>
-              </table>
-            </div>
-          ))}
-        </div>
+        {this.state.invalid ? invalidResponse : validResponse}
       </div>
     );
   }
 }
 
-export default ZipFieldSearch;
+export default ZipSearch;

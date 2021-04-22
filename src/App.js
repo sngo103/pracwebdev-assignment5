@@ -1,16 +1,9 @@
 import React, { Component } from "react";
 import "./index.css";
-import ZipSearchField from "./components/ZipSearchField";
-import SearchComponent from "./components/SearchComponent";
-import City from "./components/City";
-import ReactDOM from "react-dom";
-import axios from "axios";
+import ZipSearch from "./components/ZipSearch";
+import CitySearch from "./components/CitySearch";
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <div>
@@ -19,7 +12,8 @@ class App extends Component {
           <h3 className="p-2 m-0"> by Team Foodies </h3>
         </div>
         <div className="container text-center">
-          <ZipSearchField />
+          <ZipSearch />
+          <CitySearch />
         </div>
       </div>
     );
