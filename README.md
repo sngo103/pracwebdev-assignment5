@@ -17,5 +17,4 @@
   - [ ] Display all states where the city was found
   - [ ] Group the zip code results by state
 ----
-**Launch Instructions**
-Clone repo in location of your choice. `cd` into the root directory of the cloned repo. Run `npm install` and then `npm start`. The site should open on its own in the browser. Done!
+**Link to Deployed App:** [https://sngo103.github.io/pracwebdev-assignment5/](https://sngo103.github.io/pracwebdev-assignment5/)
