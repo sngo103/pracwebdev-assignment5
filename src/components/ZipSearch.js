@@ -5,30 +5,15 @@ Function takes in Zipcode
 takes in the user zipcode 
 MARK: we need a second parameter to change the zipcode
 */
-class ZipFieldSearch extends Component {
+class ZipSearch extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      zipcode: "11229",
-      invalid: false,
+      zipcode: "",
+      invalid: true,
       myData: [],
     };
     this.handleInputChange = this.handleInputChange.bind(this);
-  }
-
-  // This goes and fetches city information based on the value in this.state.zipcode.
-  // Note: this state value is updated whenever the value of the text input changes.
-  // Runs once.
-  componentDidMount() {
-    fetch("https://ctp-zip-api.herokuapp.com/zip/" + this.state.zipcode)
-      .then((res) => res.json())
-      .then((data) => {
-        this.setState({ myData: data });
-        // console.log(this.state.myData);
-      })
-      .catch((e) => {
-        console.log("Error:", e);
-      });
   }
 
   // This goes and fetches city information based on the value in this.state.zipcode
@@ -39,7 +24,6 @@ class ZipFieldSearch extends Component {
       .then((res) => res.json())
       .then((data) => {
         this.setState({ myData: data});
-        console.log("DATA:", this.state.myData);
       })
       .catch((e) => {
         console.log("Error:", e);
@@ -127,4 +111,4 @@ class ZipFieldSearch extends Component {
   }
 }
 
-export default ZipFieldSearch;
+export default ZipSearch;
