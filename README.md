@@ -5,10 +5,10 @@
 **Task Breakdown**
 - Gabby: 
   - [x] Zip Code - Created Input Form
-  - [ ] City Search - Display city details for each zip code
+  - [x] City Search - Display city details for each zip code
 - Nirmala: 
   - [x] Zip Code Call API and Display Results
-  - [ ] Zip Code No Results
+  - [x] Zip Code No Results
 - Samantha: 
   - [x] Zip Code - Add CSS for UI
   - [x] City Search - Input
