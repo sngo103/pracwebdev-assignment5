@@ -15,6 +15,8 @@
   - [x] City Search - API Call and Display
 - Kristy: 
   - [x] Fixed bugs and added UI design
+ 
+ Extra Features
   - [ ] Display all states where the city was found
   - [ ] Group the zip code results by state
 ----
