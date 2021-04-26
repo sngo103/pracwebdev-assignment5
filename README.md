@@ -14,6 +14,7 @@
   - [x] City Search - Input
   - [x] City Search - API Call and Display
 - Kristy: 
+  - [x] Helped with initial setup  
   - [x] Fixed bugs and added UI design
  
  Extra Features
