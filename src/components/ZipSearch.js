@@ -12,6 +12,7 @@ class ZipSearch extends Component {
       zipcode: "",
       invalid: true,
       myData: [],
+      noResponse: false,
     };
     this.handleInputChange = this.handleInputChange.bind(this);
   }
@@ -23,9 +24,11 @@ class ZipSearch extends Component {
     fetch("https://ctp-zip-api.herokuapp.com/zip/" + this.state.zipcode)
       .then((res) => res.json())
       .then((data) => {
-        this.setState({ myData: data});
+        console.log(data);
+        this.setState({ myData: data, noResponse: false });
       })
       .catch((e) => {
+        this.setState({ noResponse: true });
         console.log("Error:", e);
       });
   }
@@ -34,7 +37,7 @@ class ZipSearch extends Component {
   handleInputChange(e) {
     //Modified
     if (e.length === 5) {
-      this.setState({ zipcode: e, invalid: false});
+      this.setState({ zipcode: e, invalid: false, myData: [] });
     } else {
       this.setState({ zipcode: e, invalid: true, myData: [] });
     }
@@ -106,7 +109,7 @@ class ZipSearch extends Component {
             className="border-2 border-black rounded-md px-2 text-center m-2"
           />
         </form>
-        {this.state.invalid ? invalidResponse : validResponse}
+        {this.state.invalid || this.state.noResponse ? invalidResponse : validResponse}
       </div>
     );
   }
