@@ -6,7 +6,7 @@ import CitySearch from "./components/CitySearch";
 class App extends Component {
   render() {
     return (
-      <div>
+      <div className="text-center">
         <div className="container bg-black text-white text-center">
           <h1 className="text-3xl p-2 m-0">Zip Code Search</h1>
           <h3 className="p-2 m-0"> by Team Foodies </h3>
@@ -15,6 +15,12 @@ class App extends Component {
           <ZipSearch />
           <CitySearch />
         </div>
+        <br />
+        <hr />
+        <br />
+        ❤️ Brought to you by Team Food: Samantha Ngo, Gabby Gonzalez, Nirmala
+        Kuhl, Kristy Lau ❤️ <br />
+        April 2021
       </div>
     );
   }
