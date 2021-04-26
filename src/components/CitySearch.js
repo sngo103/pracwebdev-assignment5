@@ -21,6 +21,8 @@ class CitySearch extends Component {
       })
       .catch((e) => {
         console.log("Error:", e);
+        //Modified - to account for extra characters
+        //this.setState({resData: []});
       });
   }
 

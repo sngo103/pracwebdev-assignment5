@@ -32,10 +32,11 @@ class ZipSearch extends Component {
 
   //this gets called whenever the text field changes
   handleInputChange(e) {
+    //Modified
     if (e.length === 5) {
-      this.setState({ zipcode: e, invalid: false });
+      this.setState({ zipcode: e, invalid: false});
     } else {
-      this.setState({ zipcode: e, invalid: true });
+      this.setState({ zipcode: e, invalid: true, myData: [] });
     }
   }
 
