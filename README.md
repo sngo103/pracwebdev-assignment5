@@ -14,7 +14,13 @@
   - [x] City Search - Input
   - [x] City Search - API Call and Display
 - Kristy: 
+  - [x] Fixed bugs and added UI design
+ 
+ Extra Features
   - [ ] Display all states where the city was found
   - [ ] Group the zip code results by state
 ----
 **Link to Deployed App:** [https://sngo103.github.io/pracwebdev-assignment5/](https://sngo103.github.io/pracwebdev-assignment5/)
+
+Known Bugs:
+- Sometimes, results linger from the last valid query, but disappears with a few keystrokes.

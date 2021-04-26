@@ -15,6 +15,13 @@ class App extends Component {
           <ZipSearch />
           <CitySearch />
         </div>
+        <br />
+        <hr />
+        <br />
+        ❤️ Brought to you by Team Food: Samantha Ngo, Gabby Gonzalez, Nirmala
+        Kuhl, Kristy Lau ❤️ <br />
+        April 2021
+        <br /><br />
       </div>
     );
   }
